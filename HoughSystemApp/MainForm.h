@@ -1,4 +1,5 @@
 #pragma once
+#include "CannyAlg.h"
 
 namespace HoughSystemApp {
 
@@ -38,6 +39,8 @@ namespace HoughSystemApp {
 	protected: 
 	private: System::Windows::Forms::ToolStripMenuItem^  systemToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  zamknijToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  algorytmyToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  cannyToolStripMenuItem;
 
 	private:
 		/// <summary>
@@ -55,12 +58,15 @@ namespace HoughSystemApp {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->systemToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->zamknijToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->algorytmyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->cannyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->systemToolStripMenuItem});
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->systemToolStripMenuItem, 
+				this->algorytmyToolStripMenuItem});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Size = System::Drawing::Size(930, 24);
@@ -77,9 +83,23 @@ namespace HoughSystemApp {
 			// zamknijToolStripMenuItem
 			// 
 			this->zamknijToolStripMenuItem->Name = L"zamknijToolStripMenuItem";
-			this->zamknijToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->zamknijToolStripMenuItem->Size = System::Drawing::Size(117, 22);
 			this->zamknijToolStripMenuItem->Text = L"Zamknij";
 			this->zamknijToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::zamknijToolStripMenuItem_Click);
+			// 
+			// algorytmyToolStripMenuItem
+			// 
+			this->algorytmyToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->cannyToolStripMenuItem});
+			this->algorytmyToolStripMenuItem->Name = L"algorytmyToolStripMenuItem";
+			this->algorytmyToolStripMenuItem->Size = System::Drawing::Size(75, 20);
+			this->algorytmyToolStripMenuItem->Text = L"Algorytmy";
+			// 
+			// cannyToolStripMenuItem
+			// 
+			this->cannyToolStripMenuItem->Name = L"cannyToolStripMenuItem";
+			this->cannyToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->cannyToolStripMenuItem->Text = L"Canny";
+			this->cannyToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::cannyToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -89,7 +109,7 @@ namespace HoughSystemApp {
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MainForm";
-			this->Text = L"MainForm";
+			this->Text = L"Hough Transform System";
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -100,5 +120,10 @@ namespace HoughSystemApp {
 	private: System::Void zamknijToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 				 this->Close();
 			 }
-	};
+	private: System::Void cannyToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 CannyAlg canny;
+				 canny.setSource("C:\\Users\\marcin.olejniczak\\Pictures\\zwierzaki\\deer_1.jpg");
+				 canny.CannyThreshold(0, 0);
+			 }
+};
 }
