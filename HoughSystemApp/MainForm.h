@@ -43,6 +43,8 @@ namespace HoughSystemApp {
 	private: System::Windows::Forms::ToolStripMenuItem^  cannyToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  bigMatrixToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  transformataToolStripMenuItem;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::Button^  button1;
 
 	private:
 		/// <summary>
@@ -64,7 +66,10 @@ namespace HoughSystemApp {
 			this->cannyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->bigMatrixToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->transformataToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
@@ -124,19 +129,40 @@ namespace HoughSystemApp {
 			this->transformataToolStripMenuItem->Name = L"transformataToolStripMenuItem";
 			this->transformataToolStripMenuItem->Size = System::Drawing::Size(175, 24);
 			this->transformataToolStripMenuItem->Text = L"Transformata";
+			this->transformataToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::transformataToolStripMenuItem_Click);
+			// 
+			// panel1
+			// 
+			this->panel1->Controls->Add(this->button1);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panel1->Location = System::Drawing::Point(0, 28);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1240, 601);
+			this->panel1->TabIndex = 1;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(12, 17);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 35);
+			this->button1->TabIndex = 0;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1240, 629);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MainForm";
 			this->Text = L"Hough Transform System";
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
+			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -160,5 +186,8 @@ private: System::Void bigMatrixToolStripMenuItem_Click(System::Object^  sender, 
 			 m.at<cv::Vec3b>(cv::Point(100,100)) = color;
 			 cv::imshow(nazwa_okna, m);
 		 }
+private: System::Void transformataToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->button1->Text = "2 + 2";
+}
 };
 }
